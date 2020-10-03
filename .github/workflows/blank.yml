@@ -23,7 +23,6 @@ jobs:
         uses: denolib/setup-deno@v2
       - name: Get users data
         run: |
-          deno --version
           deno run --allow-net --allow-write getUsers.js
       - name: Get current date
         id: date
