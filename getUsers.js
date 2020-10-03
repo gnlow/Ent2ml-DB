@@ -66,3 +66,9 @@ const getData = async () => {
     })
     return data
 }
+
+const fileData = JSON.stringify(await getData())
+await Promise.all([
+    Deno.writeTextFile("data.json", fileData),
+    Deno.writeTextFile(`prev/${Date.now()}.json`, fileData)
+])
