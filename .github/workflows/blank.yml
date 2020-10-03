@@ -25,4 +25,4 @@ jobs:
         uses: denolib/setup-deno@v2
       - run: |
           deno --version
-          deno run https://deno.land/std/examples/welcome.ts
+          deno run --allow-net --allow-write getUsers.js
