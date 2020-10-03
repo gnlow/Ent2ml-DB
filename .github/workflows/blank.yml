@@ -27,3 +27,10 @@ jobs:
         run: |
           deno --version
           deno run --allow-net --allow-write getUsers.js
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.5.1
+        with:
+          commit_message: ${{ steps.date.outputs.date }} Daily data refreshing
