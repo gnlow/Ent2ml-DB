@@ -15,4 +15,4 @@ for await (const dir of Deno.readDir("./prev")) {
         users[username].records.push(likeCount - users[username].records.reduce((prev, curr) => prev + curr, 0))
     })
 }
-Deno.writeTextFile("record.json", JSON.stringify(users))
+Deno.writeTextFile("record.json", JSON.stringify({dates, users}))
