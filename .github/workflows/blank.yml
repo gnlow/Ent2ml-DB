@@ -24,6 +24,9 @@ jobs:
       - name: Get users data
         run: |
           deno run --allow-net --allow-write getUsers.js
+      - name: Write record.js
+        run: |
+          deno run --allow-read --allow-write record.js
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
