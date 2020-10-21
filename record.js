@@ -9,14 +9,16 @@ let i = 0
 for (const dir of dirs.sort()) {
     const data = JSON.parse(await Deno.readTextFile(`./prev/${dir.name}`))
 
-    data.forEach(({username, likeCount}) => {
+    data.forEach(({username, visitCount, likeCount}) => {
         if (!users[username]) {
             users[username] = {
                 start: i,
-                records: []
+                visitRecords: [],
+                likeRecords: []
             }
         }
-        users[username].records.push(likeCount - users[username].records.reduce((prev, curr) => prev + curr, 0))
+        users[username].visitRecords.push(visitCount - users[username].visitRecords.reduce((prev, curr) => prev + curr, 0))
+        users[username].likeRecords.push(likeCount - users[username].likeRecords.reduce((prev, curr) => prev + curr, 0))
     })
     i += 1
 }
