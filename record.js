@@ -1,7 +1,19 @@
 let dates = []
 let users = {}
+
+const sortedInsert = (arr, val) => {
+    let low = 0,
+        high = arr.length
+    while (low < high) {
+        let mid = (low + high) >>> 1
+        if (arr[mid] < val) low = mid + 1
+        else high = mid
+    }
+    arr.splice(low, 0, val)
+}
+
 for await (const dir of Deno.readDir("./prev")) {
-    dates.push(dir.name.substring(0, dir.name.length - 5))
+    sortedInsert(dates, dir.name.substring(0, dir.name.length - 5))
     
     const data = JSON.parse(await Deno.readTextFile(`./prev/${dir.name}`))
 
@@ -12,7 +24,7 @@ for await (const dir of Deno.readDir("./prev")) {
                 records: []
             }
         }
-        users[username].records.push(likeCount - users[username].records.reduce((prev, curr) => prev + curr, 0))
+        sortedInsert(users[username].records, likeCount - users[username].records.reduce((prev, curr) => prev + curr, 0))
     })
 }
 Deno.writeTextFile("record.json", JSON.stringify({dates, users}))
