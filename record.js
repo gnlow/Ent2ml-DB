@@ -4,7 +4,7 @@ let dirs = []
 for await (const dir of Deno.readDir("./prev")) {
     dirs.push(dir)
 }
-const sortedDirs = dirs.sort()
+const sortedDirs = dirs.sort((a, b) => a.name > b.name ? 1 : -1)
 console.log(sortedDirs)
 
 let i = 0
