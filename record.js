@@ -25,6 +25,6 @@ for (const dir of sortedDirs) {
     i += 1
 }
 Deno.writeTextFile("record.json", JSON.stringify({
-    dates: dirs.map(x => x.name.substring(0, x.name.length - 5)),
+    dates: sortedDirs.map(x => x.name.substring(0, x.name.length - 5)),
     users
 }))

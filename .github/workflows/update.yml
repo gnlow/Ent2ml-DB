@@ -17,7 +17,7 @@ jobs:
         run: |
           deno run --allow-net --allow-write getUsers.js
 
-      - name: Write record.js
+      - name: Write record.json
         run: |
           deno run --allow-read --allow-write record.js
 

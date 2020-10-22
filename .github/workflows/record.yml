@@ -1,0 +1,22 @@
+name: Update record.json
+
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Deno
+        uses: denolib/setup-deno@v2
+
+      - name: Write record.json
+        run: |
+          deno run --allow-read --allow-write record.js
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.5.1
+        with:
+          commit_message: Update record.json on push
