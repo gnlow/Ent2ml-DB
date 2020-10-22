@@ -4,9 +4,11 @@ let dirs = []
 for await (const dir of Deno.readDir("./prev")) {
     dirs.push(dir)
 }
+const sortedDirs = dirs.sort()
+console.log(sortedDirs)
 
 let i = 0
-for (const dir of dirs.sort()) {
+for (const dir of sortedDirs) {
     const data = JSON.parse(await Deno.readTextFile(`./prev/${dir.name}`))
 
     data.forEach(({username, visitCount, likeCount}) => {
